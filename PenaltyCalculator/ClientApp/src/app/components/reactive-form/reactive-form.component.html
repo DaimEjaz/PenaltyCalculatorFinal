@@ -1,0 +1,37 @@
+<form [formGroup]="reactiveForm" class="form" (ngSubmit)="submit()">
+    <!-- Form controls for getting values -->
+    <div class="form-control">
+      <label for="">Enter checkout date:</label>
+      <input type="date" formControlName="checkoutDate" />
+    </div>
+    <div class="form-control">
+      <label for="">Enter return date:</label>
+      <input type="date" formControlName="returnedDate" />
+    </div>
+    <div class="form-control select">
+      <label for="">Select your country</label>
+      <div class="dropdown">
+        <select formControlName="country" (change)="selectedCountry()">
+          <!-- Default option -->
+          <option [ngValue]="null">--select--</option>
+  
+          <!-- Loops over the fetched country list to display the country names -->
+          <option
+            *ngFor="let country of countries"
+            
+            [ngValue]="country"
+          >
+            {{ country.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Calculate Penalty</button>
+  </form>
+  
+  <!-- Display child components is passed with values that determine its state -->
+  <app-display
+    [isError]="this.gotError"
+    [displayOn]="this.shouldDisplay"
+    [penaltyObj]="this.returnedPenalty"
+  ></app-display>

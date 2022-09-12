@@ -1,0 +1,12 @@
+<div class="display">
+    <!-- Displays results, if the API call got a valid response -->
+    <ul *ngIf="displayOn">
+      <li>The number of business days are: {{ penaltyObj.businessDays }}</li>
+      <li>Penalty Amount: {{ penaltyObj.totalPenalty }}</li>
+    </ul>
+  
+    <!-- Display error message if we got an error from service -->
+    <ul *ngIf="isError">
+      <li>Error: Something went wrong</li>
+    </ul>
+  </div>
